@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:e_commerce_advance/constants/string.dart';
 import 'package:provider/provider.dart';
 
+import '../../constants/colors.dart';
 import '../../utils/utils.dart';
 import '../../viewmodelorcontoller/login.dart';
 import '../../widget/button.dart';
@@ -47,6 +48,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<LoginProvider>(context);
+        final colors = Theme.of(context);
+
     return Scaffold(
         body: Center(
       child: SingleChildScrollView(
@@ -56,6 +59,11 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text('Quara Ecommerce',
+            style:colors.textTheme.titleLarge!.apply(
+color: AppColors.skyBlue
+            ) ,
+            ),
             Padding(
               padding: EdgeInsets.all(10.sp),
               child: FieldName(

@@ -3,6 +3,7 @@ import 'package:e_commerce_advance/repositery/shared_prefs.dart';
 import 'package:e_commerce_advance/utils/routes/route_name.dart';
 import 'package:e_commerce_advance/view/auth/login_page.dart';
 import 'package:e_commerce_advance/view/auth/widget/provider/changecolor_provider.dart';
+import 'package:e_commerce_advance/viewmodelorcontoller/cart_provider.dart';
 import 'package:e_commerce_advance/viewmodelorcontoller/login.dart';
 import 'package:e_commerce_advance/viewmodelorcontoller/navbar.dart';
 import 'package:e_commerce_advance/viewmodelorcontoller/product_controller.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
 
                         ChangeNotifierProvider(create: (_) => LoginProvider()),
                                                 ChangeNotifierProvider(create: (_) => ChangeColor()),
+                                                ChangeNotifierProvider(create: (_) => CartProvider()),
 
 
           ],

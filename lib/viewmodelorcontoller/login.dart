@@ -37,9 +37,8 @@ class LoginProvider with ChangeNotifier {
         context,
         MaterialPageRoute(builder: (context) => HomePage()),
       );
-        if(kDebugMode){
+      if (kDebugMode) {
         print(value.toString());
-
       }
       notifyListeners();
     }).onError((error, stackTrace) {

@@ -38,6 +38,8 @@ class PasswordFieldName extends StatelessWidget {
           obscuringCharacter: '*',
           
           decoration: InputDecoration(
+            fillColor: AppColors.whiteColor,
+            filled: true,
             suffix: InkWell(
               onTap: (){
                 _obsecurePassword.value=!_obsecurePassword.value;
@@ -55,7 +57,7 @@ class PasswordFieldName extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(2.r)),
               gapPadding: 2.h,
               borderSide: const BorderSide(
-                color: AppColors.focusColor,
+                color: AppColors.yellowColor,
                 width: 1,
                 style: BorderStyle.solid,
               ),
@@ -63,8 +65,8 @@ class PasswordFieldName extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(2.r)),
               gapPadding: 2.h,
-              borderSide: BorderSide(
-                color: AppColors.unFocusColor,
+              borderSide:const BorderSide(
+                color: AppColors.lightBlue,
                 width: 1,
                 style: BorderStyle.solid,
               ),

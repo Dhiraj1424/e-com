@@ -1,12 +1,10 @@
 import 'package:badges/badges.dart' as bd;
+import 'package:e_commerce_advance/viewmodelorcontoller/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:e_commerce_advance/model/single_product.dart';
-import 'package:e_commerce_advance/viewmodelorcontoller/product_controller.dart';
 import 'package:e_commerce_advance/viewmodelorcontoller/single_product.dart';
 
-import '../model/home_model.dart';
 import '../widget/button.dart';
 
 class DescriptionPage extends StatelessWidget {
@@ -20,6 +18,7 @@ class DescriptionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<SingleProvider>(context, listen: false)
         .fetchSingleProduct(id);
+    final colors = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +40,7 @@ class DescriptionPage extends StatelessWidget {
         future: product,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(
               child: Text(
@@ -54,10 +53,16 @@ class DescriptionPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Stack(
-                    
                     clipBehavior: Clip.none,
                     children: [
-
+                      Positioned(
+                        top: 10,
+                        left: 50,
+                        child: Text(
+                          '${snapshot.data.title}',
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ),
                       Positioned(
                         top: 40,
                         left: 60,
@@ -71,15 +76,8 @@ class DescriptionPage extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 10,
-                        left: 50,
-                        child: Text(
-                          '${snapshot.data.title}',
-                          style: const TextStyle(color: Colors.red),
-                        ),
-                      ),
-                      Positioned(
                         top: 400,
+                        left: 10,
                         child: Container(
                           width: MediaQuery.of(context).size.width - 20,
                           child: Text(
@@ -90,20 +88,36 @@ class DescriptionPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                       Positioned(
-                        height: 50,
-                        width: 400,
-                       // top: 40,
-                                       bottom: 200,
-                                       child: SummitButton(
-                                         onTap: () {},
-                                         text: 'Add to Cart',
-                                       )
-                       )
+                      Positioned(
+                          left: 20,
+                          bottom: 200,
+                          child: RichText(
+                            text: TextSpan(
+                                text: '\$',
+                                style: colors.textTheme.headlineLarge,
+                                children: [
+                                  TextSpan(
+                                    text: '${snapshot.data.price}',
+                                    style: colors.textTheme.headlineMedium,
+                                  )
+                                ]),
+                          )),
+                      Positioned(
+                          height: 50,
+                          width: 400,
+                          // top: 40,
+                          bottom: 100,
+                          child: SummitButton(
+                            onTap: () {
+                              Map data = {'id': snapshot.data.id.toString()};
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .addToCart(data);
+                            },
+                            text: 'Add to Cart',
+                          ))
                     ],
                   ),
                 ),
-               
               ],
             );
           }
@@ -112,4 +126,3 @@ class DescriptionPage extends StatelessWidget {
     );
   }
 }
- 
